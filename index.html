@@ -1,0 +1,1097 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopSphere</title>
+    <!-- Tailwind cdn lnk -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Fonts Link -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assest/images/logoo.png" type="image/x-icon">
+</head>
+<style>
+    .slider-container {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        height: 400px;
+
+    }
+
+    .slider-item {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+    }
+
+    .slider-item.active {
+        opacity: 1;
+    }
+</style>
+
+<body class="bg-gray-100">
+
+    <!-- Navbar start -->
+    <nav class="bg-blue-600 p-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center flex-wrap">
+            <!-- Logo and Name (Left-aligned, no shrinking) -->
+            <div class="flex items-center flex-shrink-0">
+                <a href="index.html">
+                    <img src="assest/images/logoo.png" alt="Logo" class="h-14 mr-2">
+                </a>
+                <span class="text-white text-lg font-semibold">ShopSphere</span>
+            </div>
+
+            <!-- Mobile & Tablet Menu Button (Hamburger Icon, visible only on small and medium screens) -->
+            <button id="hamburger" class="lg:hidden text-white ml-4">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                    class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
+                </svg>
+            </button>
+
+            <!-- Search Bar (Visible only on medium and larger screens) -->
+            <div class="flex-grow mx-4 hidden sm:block">
+                <input type="text" placeholder="Search..." class="w-full px-4 py-2 rounded-lg text-gray-800">
+            </div>
+
+            <!-- Mobile & Tablet Search Bar (Visible only on small screens) -->
+            <div class="sm:hidden flex-grow mx-4 mt-2">
+                <input type="text" placeholder="Search..." class="w-full px-4 py-2 rounded-lg text-gray-800">
+            </div>
+
+            <!-- Right-side Links (Visible on desktop) -->
+            <div class="hidden lg:flex items-center space-x-4">
+                <a href="profile.html" class="text-white flex items-center space-x-2">
+                    <i class="fas fa-user"></i>
+                    <span>Profile</span>
+                </a>
+                <a href="message.html" class="text-white flex items-center space-x-2">
+                    <i class="fas fa-comment"></i>
+                    <span>Messages</span>
+                </a>
+                <a href="product.html" class="text-white flex items-center space-x-2">
+                    <i class="fas fa-box"></i>
+                    <span>Products</span>
+                </a>
+                <a href="cart.html" class="cart-link text-white flex items-center space-x-4 gap-2">
+                    <i class="fas fa-shopping-cart"></i>
+                    Cart
+                </a>
+            </div>
+        </div>
+
+        <!-- Mobile & Tablet Dropdown for Links (Initially Hidden) -->
+        <div id="mobile-menu" class="lg:hidden bg-blue-600 text-white p-4 hidden">
+            <div class="flex flex-col space-y-4">
+                <a href="profile.html" class="flex items-center space-x-2">
+                    <i class="fas fa-user"></i>
+                    <span>Profile</span>
+                </a>
+                <a href="message.html" class="flex items-center space-x-2">
+                    <i class="fas fa-comment"></i>
+                    <span>Messages</span>
+                </a>
+                <a href="product.html" class="flex items-center space-x-2">
+                    <i class="fas fa-box"></i>
+                    <span>Products</span>
+                </a>
+                <a href="cart.html" class="flex items-center space-x-2">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Cart</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Categories Section with Dropdown and Flags -->
+    <div class="bg-gray-200 p-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <!-- Categories Dropdown -->
+            <div class="relative">
+                <button id="categories-toggle" class="text-blue-600 flex items-center space-x-2">
+                    <span>All Categories</span>
+                    <i class="fas fa-bars"></i>
+                </button>
+                <!-- Categories Dropdown Menu -->
+                <div id="categories-menu" class="hidden absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-lg">
+                    <ul class="flex flex-col">
+                        <li><a href="category.html"
+                                class="block px-4 py-2 text-gray-800 text-2xl text-bold">Categories</a></li>
+                        <li><a href="product.html" class="block px-4 py-2 text-gray-800">Furniture</a></li>
+                        <li><a href="product.html" class="block px-4 py-2 text-gray-800">Watches</a></li>
+                        <li><a href="product.html" class="block px-4 py-2 text-gray-800">Smartphones</a></li>
+                        <li><a href="product.html" class="block px-4 py-2 text-gray-800">Ladies Clothes</a></li>
+                        <li><a href="product.html" class="block px-4 py-2 text-gray-800">Gents Clothes</a></li>
+                        <li><a href="product.html" class="block px-4 py-2 text-gray-800">Crockery</a></li>
+                        <li><a href="product.html" class="block px-4 py-2 text-gray-800">Jewellery</a></li>
+                        <li><a href="product.html" class="block px-4 py-2 text-gray-800">Electronics</a></li>
+                        <li><a href="product.html" class="block px-4 py-2 text-gray-800">Kids</a></li>
+                        <li><a href="product.html" class="block px-4 py-2 text-gray-800">Laptops</a></li>
+                    </ul>
+                </div>
+            </div>
+
+
+
+            <!-- Language, Currency, Ship to Dropdowns -->
+            <div class="flex space-x-4">
+                <!-- Language Dropdown -->
+                <div class="relative">
+                    <button id="language-toggle" class="flex items-center space-x-2 text-gray-800">
+                        <i class="fas fa-globe"></i>
+                        <span id="language-text">English</span>
+                    </button>
+                    <div id="language-menu" class="hidden absolute left-0 mt-2 w-40 bg-white shadow-lg rounded-lg">
+                        <ul class="flex flex-col">
+                            <li><a href="#" class="block px-4 py-2 text-gray-800" data-lang="English">English</a></li>
+                            <li><a href="#" class="block px-4 py-2 text-gray-800" data-lang="Español">Español</a></li>
+                            <li><a href="#" class="block px-4 py-2 text-gray-800" data-lang="Français">Français</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Currency Dropdown -->
+                <div class="relative">
+                    <button id="currency-toggle" class="flex items-center space-x-2 text-gray-800">
+                        <span id="currency-icon" class="text-xl">$</span>
+                        <span id="currency-text">USD</span>
+                    </button>
+                    <div id="currency-menu" class="hidden absolute left-0 mt-2 w-40 bg-white shadow-lg rounded-lg">
+                        <ul class="flex flex-col">
+                            <li><a href="#" class="block px-4 py-2 text-gray-800" data-currency="USD"
+                                    data-icon="$">USD</a></li>
+                            <li><a href="#" class="block px-4 py-2 text-gray-800" data-currency="EUR"
+                                    data-icon="€">EUR</a></li>
+                            <li><a href="#" class="block px-4 py-2 text-gray-800" data-currency="GBP"
+                                    data-icon="£">GBP</a></li>
+                            <li><a href="#" class="block px-4 py-2 text-gray-800" data-currency="PKR"
+                                    data-icon="Rs">PKR</a></li>
+                            <li><a href="#" class="block px-4 py-2 text-gray-800" data-currency="INR"
+                                    data-icon="Rs">INR</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Ship to Dropdown -->
+                <div class="relative">
+                    <button id="shipto-toggle" class="flex items-center space-x-2 text-gray-800">
+                        <img id="shipto-flag"
+                            src="https://cdn.britannica.com/79/4479-050-6EF87027/flag-Stars-and-Stripes-May-1-1795.jpg"
+                            alt="Flag" class="w-5 h-5">
+
+                        <span id="shipto-text">US</span>
+                    </button>
+
+
+                    <div id="shipto-menu" class="hidden absolute left-0 mt-2 w-40 bg-white shadow-lg rounded-lg">
+                        <ul class="flex flex-col">
+                            <li><a href="#" class="block px-4 py-2 text-gray-800 " data-shipto="USA"
+                                    data-flag="https://flagicons.lipis.dev/flags/4x3/us.svg">USA</a></li>
+                            <li><a href="#" class="block px-4 py-2 text-gray-800 w-20" data-shipto="Can"
+                                    data-flag="https://flagicons.lipis.dev/flags/4x3/ca.svg">Canada</a></li>
+                            <li><a href="#" class="block px-4 py-2 text-gray-800" data-shipto="Mexi"
+                                    data-flag="https://flagicons.lipis.dev/flags/4x3/mx.svg">Mexico</a></li>
+                            <li><a href="#" class="block px-4 py-2 text-gray-800" data-shipto="Pak"
+                                    data-flag="https://flagicons.lipis.dev/flags/4x3/pk.svg">Pakistan</a></li>
+                            <li><a href="#" class="block px-4 py-2 text-gray-800" data-shipto="Ind"
+                                    data-flag="https://flagicons.lipis.dev/flags/4x3/in.svg">India</a></li>
+                            <li><a href="#" class="block px-4 py-2 text-gray-800" data-shipto="Uk"
+                                    data-flag="https://flagicons.lipis.dev/flags/4x3/gb.svg">United Kingdom</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar end -->
+
+    <!-- Hero section start -->
+
+    <!-- Sidebar start -->
+
+    <div class="container mx-auto p-4">
+        <!-- Wrapper Card for the entire section -->
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+            <div class="flex flex-wrap lg:flex-nowrap items-stretch">
+                <!-- Sidebar -->
+                <div class="w-full lg:w-1/4 p-4 text-xl flex flex-col bg-gray-100 mt-20">
+                    <ul class="space-y-4">
+                        <li><a href="product.html"
+                                class="text-black-600 no-underline hover:text-blue-800 transition-colors duration-300">Automobiles</a>
+                        </li>
+                        <li><a href="product.html"
+                                class="text-black-600 no-underline hover:text-blue-800 transition-colors duration-300">Clothes
+                                and Wear</a></li>
+                        <li><a href="product.html"
+                                class="text-black-600 no-underline hover:text-blue-800 transition-colors duration-300">Home
+                                Interiors</a></li>
+                        <li><a href="product.html"
+                                class="text-black-600 no-underline hover:text-blue-800 transition-colors duration-300">Computer
+                                and Tech</a></li>
+                        <li><a href="product.html"
+                                class="text-black-600 no-underline hover:text-blue-800 transition-colors duration-300">Tools,
+                                Equipment</a></li>
+                        <li><a href="product.html"
+                                class="text-black-600 no-underline hover:text-blue-800 transition-colors duration-300">Kids
+                                Garments</a></li>
+                        <li><a href="product.html"
+                                class="text-black-600 no-underline hover:text-blue-800 transition-colors duration-300">Sports
+                                and Outdoors</a></li>
+                        <li><a href="product.html"
+                                class="text-black-600 no-underline hover:text-blue-800 transition-colors duration-300">Animals
+                                and Pets</a></li>
+                        <li><a href="#"
+                                class="text-black-600 no-underline hover:text-blue-800 transition-colors duration-300">Machinery
+                                Tools</a></li>
+                        <li><a href="product.html"
+                                class="text-black-600 no-underline hover:text-blue-800 transition-colors duration-300">Electronics
+                                Accessories</a></li>
+                        <li><a href="product.html"
+                                class="text-black-600 no-underline hover:text-blue-800 transition-colors duration-300">Mobile
+                                And Watches</a></li>
+                        <li><a href="product.html"
+                                class="text-black-600 no-underline hover:text-blue-800 transition-colors duration-300">Computer
+                                And Laptops</a></li>
+                        <li><a href="product.html"
+                                class="text-black-600 no-underline hover:text-blue-800 transition-colors duration-300">More
+                                Categories</a></li>
+                    </ul>
+                </div>
+
+                <!-- Side bar end  -->
+
+                <!-- Slider Container -->
+                <div
+                    class="slider-container mx-auto lg:w-3/4 mt-32 h-96 sm:h-[400px] md:h-[500px] lg:h-[700px] px-4 lg:px-8 lg:m-10">
+
+                    <div class="slider-item active">
+                        <img src="https://t3.ftcdn.net/jpg/06/32/90/44/360_F_632904407_iPLi90WdjZ0oKAeRiL98gEIeHIUtzWae.jpg"
+                            alt="Banner 1" class="w-full h-full object-cover rounded-xl">
+                    </div>
+                    <div class="slider-item">
+                        <img src="https://i.pinimg.com/736x/ad/6c/8e/ad6c8e2143e2a808f79a88680fe0c3f9.jpg"
+                            alt="Banner 2" class="w-full h-full object-cover rounded-xl">
+                    </div>
+                    <div class="slider-item">
+                        <img src="https://i.pinimg.com/736x/93/84/25/9384256c1338be4d677c3601daff607e.jpg"
+                            alt="Banner 3" class="w-full h-full object-cover rounded-xl">
+                    </div>
+                </div>
+
+
+                <!-- Right Side (Profile Box and Additional Boxes) -->
+
+                <div class="w-full lg:w-1/4 p-4 flex flex-col justify-between bg-gray-100">
+                    <!-- Profile Box -->
+                    <div class="bg-gray-200 p-4 mb-4 rounded-lg shadow-lg flex-1">
+                        <p class="text-center mb-4">Welcome to ShopSphere!</p>
+                        <img id="profilePic" src="assest/images/PP.jpeg" alt="Profile"
+                            class="w-40 h-40 rounded-full mx-auto mb-4">
+                       
+
+                        <!-- Custom Add Image Button -->
+                        <div class="text-center">
+                            <label for="uploadPic"
+                                class="bg-green-600 text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-green-800 transition-all duration-300">
+                                Update Image
+                            </label>
+                            <input type="file" id="uploadPic" accept="image/*" class="hidden">
+                        </div>
+
+                        <div class="mt-8">
+                            <a href="login.html"
+                                class="block bg-blue-600 text-white px-4 py-2 rounded-lg mb-2 w-full text-center hover:bg-blue-800 transition-all duration-300">
+                                Login
+                            </a>
+                            <a href="signup.html"
+                                class="block bg-blue-600 text-white px-4 py-2 rounded-lg w-full text-center hover:bg-blue-800 transition-all duration-300">
+                                Sign Up
+                            </a>
+                        </div>
+                    </div>
+
+
+
+                    <!-- Additional Box 1 -->
+                    <div class="bg-orange-400 p-4 mb-4 rounded-lg shadow-lg flex-1">
+                        <p class="m-4 text-2xl">Get US $10 off <br> with a new <br> Supplier</p>
+                    </div>
+
+                    <!-- Additional Box 2 -->
+                    <div class="bg-teal-400 p-4 rounded-lg shadow-lg flex-1">
+                        <p class="m-4 text-2xl">Send quote with <br>Supplier <br> Preference.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section end -->
+
+    <!-- Timer Start  -->
+
+    <div class="container mx-auto p-4 flex flex-wrap flex-row ">
+        <!-- Right Box Section -->
+        <div class="w-full lg:w-1/3 p-4 ">
+            <!-- Intro Text -->
+            <div class="bg-white p-4 rounded-lg shadow-lg hover:scale-105 transform transition-all duration-300 ">
+                <div class="mb-8">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-2">Deals And Offers</h2>
+                    <p class="text-gray-500">Hygiene Equipments</p>
+                </div>
+
+                <!-- Timer Boxes -->
+                <div class="grid grid-cols-4 sm:grid-cols-4 gap-1 mb-8">
+                    <div class="bg-blue-600 text-white p-2 rounded-lg text-center w-16 h-16">
+                        <p class="text-xs font-semibold" id="days">00</p>
+                        <p class="text-xs">Days</p>
+                    </div>
+                    <div class="bg-blue-600 text-white p-2 rounded-lg text-center w-16 h-16">
+                        <p class="text-xs font-semibold" id="hours">00</p>
+                        <p class="text-xs">Hours</p>
+                    </div>
+                    <div class="bg-blue-600 text-white p-2 rounded-lg text-center w-16 h-16">
+                        <p class="text-xs font-semibold" id="minutes">00</p>
+                        <p class="text-xs">Minutes</p>
+                    </div>
+                    <div class="bg-blue-600 text-white p-2 rounded-lg text-center w-16 h-16">
+                        <p class="text-xs font-semibold" id="seconds">00</p>
+                        <p class="text-xs">Seconds</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Timer End  -->
+
+        <!-- 5 New Boxes Section (placed in front of the timer card) -->
+        <div class="flex flex-wrap w-full lg:w-2/3 gap-4">
+            <!-- Product Boxes -->
+            <div
+                class="bg-white p-4 rounded-lg shadow-lg hover:scale-105 transform transition-all duration-300 w-full sm:w-1/2 md:w-1/2 lg:w-1/5">
+                <img src="https://i.pinimg.com/736x/83/d3/19/83d319d0737e6c91e40d49d6b3fec5c2.jpg" alt="Product 1"
+                    class="w-full h-auto object-contain rounded-md mb-2">
+                <h3 class="text-sm font-semibold text-center mb-2">Smart Watches</h3>
+                <p class="text-center text-red-600 font-bold text-xs bg-red-100 rounded-full px-2 py-1">15% OFF</p>
+            </div>
+            <div
+                class="bg-white p-4 rounded-lg shadow-lg hover:scale-105 transform transition-all duration-300 w-full sm:w-1/2 md:w-1/2 lg:w-1/5">
+                <img src="https://www.asus.com/media/Odin/Websites/global/Series/9.png" alt="Product 2"
+                    class="w-full h-auto object-contain rounded-md mb-2">
+                <h3 class="text-sm font-semibold text-center mb-2">Laptops</h3>
+                <p class="text-center text-red-600 font-bold text-xs bg-red-100 rounded-full px-2 py-1">15% OFF</p>
+            </div>
+            <div
+                class="bg-white p-4 rounded-lg shadow-lg hover:scale-105 transform transition-all duration-300 w-full sm:w-1/2 md:w-1/2 lg:w-1/5">
+                <img src="https://i.pinimg.com/736x/0a/95/73/0a957350d8ba1c3e0fb805d610269154.jpg"
+                    alt="Product 3" class="w-full h-auto object-contain rounded-md mb-2">
+                <h3 class="text-sm font-semibold text-center mb-2">GoPro Cameras</h3>
+                <p class="text-center text-red-600 font-bold text-xs bg-red-100 rounded-full px-2 py-1">15% OFF</p>
+            </div>
+            <div
+                class="bg-white p-4 rounded-lg shadow-lg hover:scale-105 transform transition-all duration-300 w-full sm:w-1/2 md:w-1/2 lg:w-1/5">
+                <img src="https://i.pinimg.com/736x/be/bc/a6/bebca61f1c24f85badffd9b5a01bc489.jpg" alt="Product 4"
+                    class="w-full h-auto object-contain rounded-md mb-2">
+                <h3 class="text-sm font-semibold text-center mb-2">Headphones</h3>
+                <p class="text-center text-red-600 font-bold text-xs bg-red-100 rounded-full px-2 py-1">15% OFF</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    </div>
+    </div>
+
+    <div class="container mx-auto p-4 flex flex-wrap lg:flex-nowrap">
+        <!-- Right Side Banner with Text and Button -->
+        <div class="w-full lg:w-1/3 p-4 relative bg-white rounded-lg shadow-lg overflow-hidden">
+            <img src="https://as2.ftcdn.net/v2/jpg/05/65/87/75/1000_F_565877504_75QhFpHtgkGhqPZqSdPtXwpbwbkgnhtU.jpg"
+                alt="Banner" class="w-full h-full object-cover rounded-lg">
+            <div class="absolute inset-0 bg-white bg-opacity-50 flex flex-col justify-center items-center p-4">
+                <h2 class="text-black-800 text-4xl font-semibold mb-2">Home and Outdoors</h2>
+                <p class="text-black-800 text-lg mb-4 text-center">Get the best deals on our products today.</p>
+                <button class="bg-white text-black-800 py-1 px-4 rounded-full hover:bg-pink-600 transition">Shop
+                    Now</button>
+            </div>
+        </div>
+
+        <!-- 8 Cards in Grid Layout -->
+        <div class="w-full lg:w-2/3 p-4 grid grid-cols-2 sm:grid-cols-4 gap-4 mt-4 lg:mt-0">
+            <!-- Card 1 -->
+            <div class="bg-white p-4 rounded-lg shadow-lg hover:scale-105 transform transition-all duration-300">
+                <img src="https://i.pinimg.com/736x/85/2f/83/852f83d8c961edc2b45bd86a0c20d343.jpg" alt="Product 1"
+                    class="w-full h-50 object-cover rounded-md mb-2">
+                <h3 class="text-center text-lg font-semibold">Soft chairs</h3>
+                <h4 class="text-center text-sm font-light">From USD 60</h4>
+            </div>
+            <!-- Card 2 -->
+            <div class="bg-white p-4 rounded-lg shadow-lg hover:scale-105 transform transition-all duration-300">
+                <img src="https://i.pinimg.com/736x/ee/1a/f5/ee1af57130edd2b82e59f2e1705cc3d5.jpg" alt="Product 1"
+                    class="w-full h-50 object-cover rounded-md mb-2">
+                <h3 class="text-center text-lg font-semibold">Sofas and Chairs</h3>
+                <h4 class="text-center text-sm font-light">From USD 80</h4>
+            </div>
+            <!-- Card 3 -->
+            <div class="bg-white p-4 rounded-lg shadow-lg hover:scale-105 transform transition-all duration-300">
+                <img src="https://i.pinimg.com/736x/e7/ff/46/e7ff4636fa6799110106d52c3ef46123.jpg" alt="Product 1"
+                    class="w-full h-50 object-cover rounded-md mb-2">
+                <h3 class="text-center text-lg font-semibold">Kitchen dishes</h3>
+                <h4 class="text-center text-sm font-light">From USD 40</h4>
+            </div>
+            <!-- Card 4 -->
+            <div class="bg-white p-4 rounded-lg shadow-lg hover:scale-105 transform transition-all duration-300">
+                <img src="https://i.pinimg.com/736x/14/8d/0b/148d0b4c744748b19721885fd7e4e2f1.jpg" alt="Product 1"
+                    class="w-full h-50 object-cover rounded-md mb-2">
+                <h3 class="text-center text-lg font-semibold">Smart Watches</h3>
+                <h4 class="text-center text-sm font-light">From USD 25</h4>
+            </div>
+            <!-- Card 5 -->
+            <div class="bg-white p-4 rounded-lg shadow-lg hover:scale-105 transform transition-all duration-300">
+                <img src="https://i.pinimg.com/736x/aa/cb/d6/aacbd6e169a574a1c0478337bb93af63.jpg" alt="Product 1"
+                    class="w-full h-50 object-cover rounded-md mb-2">
+                <h3 class="text-center text-lg font-semibold">Kitchen mixer</h3>
+                <h4 class="text-center text-sm font-light">From USD 60</h4>
+            </div>
+            <!-- Card 6 -->
+            <div class="bg-white p-4 rounded-lg shadow-lg hover:scale-105 transform transition-all duration-300">
+                <img src="https://i.pinimg.com/736x/62/ee/a2/62eea26fa69fdeb8225ad5a130ce29ac.jpg" alt="Product 1"
+                    class="w-full h-50 object-cover rounded-md mb-2">
+                <h3 class="text-center text-lg font-semibold">Blenders</h3>
+                <h4 class="text-center text-sm font-light">From USD 40</h4>
+            </div>
+            <!-- Card 7 -->
+            <div class="bg-white p-4 rounded-lg shadow-lg hover:scale-105 transform transition-all duration-300">
+                <img src="https://i.pinimg.com/736x/00/9a/69/009a697161aa20ab3d2a88a19fe5eb6a.jpg" alt="Product 1"
+                    class="w-full h-50 object-cover rounded-md mb-2">
+                <h3 class="text-center text-lg font-semibold">Home Appliances</h3>
+                <h4 class="text-center text-sm font-light">From USD 100</h4>
+            </div>
+            <!-- Card 8 -->
+            <div class="bg-white p-4 rounded-lg shadow-lg hover:scale-105 transform transition-all duration-300">
+                <img src="https://i.pinimg.com/736x/ae/62/34/ae623440e379c39b5f870805f2fdb63a.jpg" alt="Product 1"
+                    class="w-full h-448 object-cover rounded-md mb-2">
+                <h3 class="text-center text-lg font-semibold">Coffee Maker</h3>
+                <h4 class="text-center text-sm font-light">From USD 10</h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mx-auto p-4 flex flex-wrap lg:flex-nowrap">
+        <!-- Right Side Banner with Text and Button -->
+        <div class="w-full lg:w-1/3 p-4 relative bg-white rounded-lg shadow-lg overflow-hidden">
+            <img src="https://i.pinimg.com/736x/d9/17/c5/d917c5981efc8f2542ef16dcff58c6a2.jpg" alt="Banner"
+                class="w-full h-full object-cover rounded-lg">
+            <div class="absolute inset-0 bg-white bg-opacity-50 flex flex-col justify-center items-center p-4">
+                <h2 class="text-black-800 text-4xl font-semibold mb-2 text-center">Consumer Electronics And Gadgets</h2>
+                <p class="text-black-800 text-lg mb-4 text-center">Get the best deals on our products today.</p>
+                <button class="bg-white text-black-800 py-1 px-4 rounded-full hover:bg-pink-600 transition">Shop
+                    Now</button>
+            </div>
+        </div>
+
+        <!-- 8 Cards in Grid Layout -->
+        <div class="w-full lg:w-2/3 p-4 grid grid-cols-2 sm:grid-cols-4 gap-4 mt-4 lg:mt-0">
+            <!-- Card 1 -->
+            <div class="bg-white p-4 rounded-lg shadow-lg hover:scale-105 transform transition-all duration-300">
+                <img src="https://i.pinimg.com/736x/00/22/a9/0022a9eb283ba672c92cdc2db32de556.jpg" alt="Product 1"
+                    class="w-full h-50 object-cover rounded-md mb-2">
+                <h3 class="text-center text-lg font-semibold">Smart Watches</h3>
+                <h4 class="text-center text-sm font-light">From USD 25</h4>
+            </div>
+            <!-- Card 2 -->
+            <div class="bg-white p-4 rounded-lg shadow-lg hover:scale-105 transform transition-all duration-300">
+                <img src="https://i.pinimg.com/736x/64/b7/6c/64b76cdc1f6946cfc1116f8a91dcee0c.jpg" alt="Product 1"
+                    class="w-full h-50 object-cover rounded-md mb-2">
+                <h3 class="text-center text-lg font-semibold">Cameras</h3>
+                <h4 class="text-center text-sm font-light">From USD 50</h4>
+            </div>
+            <!-- Card 3 -->
+            <div class="bg-white p-4 rounded-lg shadow-lg hover:scale-105 transform transition-all duration-300">
+                <img src="https://i.pinimg.com/736x/8c/db/e1/8cdbe123010c380e20f264a8fdd57938.jpg" alt="Product 1"
+                    class="w-full h-50 object-cover rounded-md mb-2">
+                <h3 class="text-center text-lg font-semibold">Headphones</h3>
+                <h4 class="text-center text-sm font-light">From USD 35</h4>
+            </div>
+            <!-- Card 4 -->
+            <div class="bg-white p-4 rounded-lg shadow-lg hover:scale-105 transform transition-all duration-300">
+                <img src="https://i.pinimg.com/736x/52/9d/ec/529dec5b45c59990c8548df1d631389a.jpg" alt="Product 1"
+                    class="w-full h-50 object-cover rounded-md mb-2">
+                <h3 class="text-center text-lg font-semibold">Tablets</h3>
+                <h4 class="text-center text-sm font-light">From USD 80</h4>
+            </div>
+            <!-- Card 5 -->
+            <div class="bg-white p-4 rounded-lg shadow-lg hover:scale-105 transform transition-all duration-300">
+                <img src="https://i.pinimg.com/736x/6b/fe/e3/6bfee329c8abc1f77a1cac829465a22c.jpg" alt="Product 1"
+                    class="w-full h-50 object-cover rounded-md mb-2">
+                <h3 class="text-center text-lg font-semibold">Gaming Setup</h3>
+                <h4 class="text-center text-sm font-light">From USD 150</h4>
+            </div>
+            <!-- Card 6 -->
+            <div class="bg-white p-4 rounded-lg shadow-lg hover:scale-105 transform transition-all duration-300">
+                <img src="https://i.pinimg.com/736x/6a/0d/fd/6a0dfd05ba9bcf6dca127d9eecdcb312.jpg" alt="Product 1"
+                    class="w-full h-50 object-cover rounded-md mb-2">
+                <h3 class="text-center text-lg font-semibold">Laptops & Pcs</h3>
+                <h4 class="text-center text-sm font-light">From USD 100</h4>
+            </div>
+            <!-- Card 7 -->
+            <div class="bg-white p-4 rounded-lg shadow-lg hover:scale-105 transform transition-all duration-300">
+                <img src="https://i.pinimg.com/736x/66/c2/3f/66c23f9566266ec63f39b2dac1a56585.jpg" alt="Product 1"
+                    class="w-full h-50 object-cover rounded-md mb-2">
+                <h3 class="text-center text-lg font-semibold">Smartphones</h3>
+                <h4 class="text-center text-sm font-light">From USD 90</h4>
+            </div>
+            <!-- Card 8 -->
+            <div class="bg-white p-4 rounded-lg shadow-lg hover:scale-105 transform transition-all duration-300">
+                <img src="https://i.pinimg.com/736x/f1/39/9b/f1399b4acf66d85f9691d5661dd80f3d.jpg" alt="Product 1"
+                    class="w-full h-448 object-cover rounded-md mb-2">
+                <h3 class="text-center text-lg font-semibold">Electric Kettles</h3>
+                <h4 class="text-center text-sm font-light">From USD 45</h4>
+            </div>
+        </div>
+    </div>
+    <div class="container mx-auto p-4">
+
+        <!-- Full-width Banner Section -->
+
+        <div class="relative w-full bg-cover bg-center rounded-lg overflow-hidden"
+            style="background-image: url('https://i.pinimg.com/736x/0e/3c/00/0e3c004c4c5692d06d359b6b2f10eaed.jpg');">
+            <div class="flex flex-wrap lg:flex-nowrap items-center p-8 bg-black bg-opacity-50">
+                <!-- Text Section (Left Side) -->
+                <div class="w-full lg:w-1/2 text-white p-4">
+                    <h2 class="text-3xl font-semibold mb-2">Get the Best Deals!</h2>
+                    <p class="text-lg">Find everything you need at amazing prices. Don’t miss out!</p>
+                </div>
+
+                <!-- Form Section (Right Side) -->
+                <div class="w-full lg:w-1/2 bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Send Quote to Seller</h3>
+
+                    <!-- Form -->
+                    <form>
+                        <div class="mb-4">
+                            <label for="item" class="block text-sm font-medium text-gray-700">What item do you
+                                need?</label>
+                            <input type="text" id="item" name="item" placeholder="Enter item name"
+                                class="w-full p-2 border border-gray-300 rounded mt-1" />
+                        </div>
+                        <div class="mb-4">
+                            <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+                            <textarea id="description" name="description" rows="3"
+                                placeholder="Provide a brief description"
+                                class="w-full p-2 border border-gray-300 rounded mt-1"></textarea>
+                        </div>
+                        <div class="flex space-x-4 mb-4">
+                            <div class="flex-1">
+                                <label for="quantity" class="block text-sm font-medium text-gray-700">Quantity</label>
+                                <input type="number" id="quantity" name="quantity" placeholder="Qty"
+                                    class="w-full p-2 border border-gray-300 rounded mt-1" />
+                            </div>
+                            <div class="flex-1">
+                                <label for="pcs" class="block text-sm font-medium text-gray-700">Pcs</label>
+                                <input type="number" id="pcs" name="pcs" placeholder="Pcs"
+                                    class="w-full p-2 border border-gray-300 rounded mt-1" />
+                            </div>
+                        </div>
+                        <button type="submit"
+                            class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">Send
+                            Inquiry</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recommended Items Section -->
+    <section class="container mx-auto p-4">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Recommended Items</h2>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+
+            <!-- Card 1 -->
+            <div class="bg-white p-4 rounded-lg shadow-lg hover:scale-105 transform transition-all duration-300">
+                <img src="https://i.pinimg.com/736x/16/ac/be/16acbea58724adb45f41817f32a159ad.jpg" alt="Item 1"
+                    class="w-full h-50 object-cover rounded-md mb-2">
+                <p class="text-sm font-semibold mb-1">$25.00</p>
+                <p class="text-xs text-gray-600">T-Shirt with multiple colors,for men</p>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="bg-white p-4 rounded-lg shadow-lg hover:scale-105 transform transition-all duration-300">
+                <img src="https://i.pinimg.com/736x/80/51/22/805122a69392ebd7d5b10d288d3ddf5c.jpg" alt="Item 1"
+                    class="w-full h-50 object-cover rounded-md mb-2">
+                <p class="text-sm font-semibold mb-1">$19.80</p>
+                <p class="text-xs text-gray-600">Jeans short for men blue color</p>
+            </div>
+
+
+
+            <!--  for Card 3 -->
+            <div class="bg-white p-4 rounded-lg shadow-lg hover:scale-105 transform transition-all duration-300">
+                <img src="https://i.pinimg.com/736x/8f/f3/0d/8ff30d1c3a4f3268535475665a9545c7.jpg" alt="Item 3"
+                    class="w-full h-50 object-cover rounded-md mb-2">
+                <p class="text-sm font-semibold mb-1">$25.70</p>
+                <p class="text-xs text-gray-600">Brown winter coat medium size</p>
+            </div>
+
+            <!--  for Card 4 -->
+            <div class="bg-white p-4 rounded-lg shadow-lg hover:scale-105 transform transition-all duration-300">
+                <img src="https://i.pinimg.com/736x/80/1d/e9/801de9af3f258ea206eb1a93a9acbdb0.jpg" alt="Item 3"
+                    class="w-full h-50 object-cover rounded-md mb-2">
+                <p class="text-sm font-semibold mb-1">$21.10</p>
+                <p class="text-xs text-gray-600">Leather Wallet</p>
+            </div>
+
+            <!--  for Card 5 -->
+            <div class="bg-white p-4 rounded-lg shadow-lg hover:scale-105 transform transition-all duration-300">
+                <img src="https://i.pinimg.com/736x/0d/a8/c0/0da8c0410c6abf62af04c1f89306d3ea.jpg" alt="Item 3"
+                    class="w-full h-50 object-cover rounded-md mb-2">
+                <p class="text-sm font-semibold mb-1">$36.00</p>
+                <p class="text-xs text-gray-600">Jeans bag for travel for men</p>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="bg-white p-4 rounded-lg shadow-lg hover:scale-105 transform transition-all duration-300">
+                <img src="https://i.pinimg.com/736x/35/70/64/357064c36607c8f4ae952113aa48f90e.jpg" alt="Item 1"
+                    class="w-full h-50 object-cover rounded-md mb-2">
+                <p class="text-sm font-semibold mb-1">$88.20</p>
+                <p class="text-xs text-gray-600">Canon Camera black, 100X zoom</p>
+            </div>
+
+            <!-- Card 7 -->
+            <div class="bg-white p-4 rounded-lg shadow-lg hover:scale-105 transform transition-all duration-300">
+                <img src="https://i.pinimg.com/736x/c9/d3/d9/c9d3d9497ff6778e67c4538fd1067837.jpg" alt="Item 2"
+                    class="w-full h-50 object-cover rounded-md mb-2 ">
+                <p class="text-sm font-semibold mb-1">$40.00</p>
+                <p class="text-xs text-gray-600">Headset for gaming with mic</p>
+            </div>
+
+
+            <!--  for Card 3 -->
+            <div class="bg-white p-4 rounded-lg shadow-lg hover:scale-105 transform transition-all duration-300">
+                <img src="https://i.pinimg.com/736x/2a/7f/bf/2a7fbf2cb2453ce736f904fe6e5c5077.jpg" alt="Item 3"
+                    class="w-full h-50 object-cover rounded-md mb-2">
+                <p class="text-sm font-semibold mb-1">$38.00</p>
+                <p class="text-xs text-gray-600">Smart watch balck color men</p>
+            </div>
+
+            <!--  for Card 4 -->
+            <div class="bg-white p-4 rounded-lg shadow-lg hover:scale-105 transform transition-all duration-300">
+                <img src="https://i.pinimg.com/736x/e6/d9/12/e6d912acb9c16f680118d1d54ab8a960.jpg" alt="Item 3"
+                    class="w-full h-50 object-cover rounded-md mb-2">
+                <p class="text-sm font-semibold mb-1">$58.00</p>
+                <p class="text-xs text-gray-600">Kurti Design for women</p>
+            </div>
+
+            <!--  for Card 5 -->
+            <div class="bg-white p-4 rounded-lg shadow-lg hover:scale-105 transform transition-all duration-300">
+                <img src="https://i.pinimg.com/736x/fd/49/48/fd4948970c2aec0aa1842a3599946324.jpg" alt="Item 3"
+                    class="w-full h-50 object-cover rounded-md mb-2">
+                <p class="text-sm font-semibold mb-1">$18.00</p>
+                <p class="text-xs text-gray-600">Child Toys</p>
+            </div>
+
+
+        </div>
+    </section>
+
+    <div class="container mx-auto py-12 mt-8 px-4">
+        <!-- Section Heading -->
+
+        <h2 class="text-3xl font-semibold mr-4 mb-10 ">Our Extra Service</h2>
+
+        <!-- Cards Section -->
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+            <!-- Card 1 -->
+            <div
+                class="bg-white p-6 rounded-lg shadow-lg text-center hover:scale-105 transform transition duration-300 relative flex flex-col">
+
+                <div class="relative w-full h-40 mb-4">
+                    <img src="https://i.pinimg.com/736x/a9/47/35/a9473596da673748e3b6f0af0bd63530.jpg" alt="Service 2"
+                        class="w-full h-full object-cover rounded-md">
+                </div>
+
+
+                <div
+                    class="absolute top-1/2 right-4 transform -translate-y-1/2 w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center">
+                    <i class="fas fa-search text-red-600 text-lg"></i>
+                </div>
+
+                <div class="flex-1 flex flex-col justify-between">
+                    <p class="text-black-800 mb-4 text-xl">Source From Industry <br> and Hubs</p>
+                </div>
+            </div>
+
+
+            <!-- Card 2 -->
+            <div
+                class="bg-white p-6 rounded-lg shadow-lg text-center hover:scale-105 transform transition duration-300 relative flex flex-col">
+
+                <div class="relative w-full h-40 mb-4">
+                    <img src="https://i.pinimg.com/736x/31/2e/4f/312e4fa596b93e613c4cfcc8565c7625.jpg" alt="Service 2"
+                        class="w-full h-full object-cover rounded-md">
+                </div>
+
+
+                <div
+                    class="absolute top-1/2 right-4 transform -translate-y-1/2 w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center">
+                    <i class="fas fa-gift text-red-600 text-lg"></i>
+                </div>
+
+                <div class="flex-1 flex flex-col justify-between">
+                    <p class="text-black-800 mb-4 text-xl">Customize Your <br> Products</p>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div
+                class="bg-white p-6 rounded-lg shadow-lg text-center hover:scale-105 transform transition duration-300 relative flex flex-col">
+
+                <div class="relative w-full h-40 mb-4">
+                    <img src="https://i.pinimg.com/736x/21/89/30/218930bf30d1998daf89de4fb0ae3a9b.jpg" alt="Service 3"
+                        class="w-full h-full object-cover rounded-md">
+                </div>
+
+
+                <div
+                    class="absolute top-1/2 right-4 transform -translate-y-1/2 w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center">
+                    <i class="fas fa-arrow-right text-green-600 text-lg"></i>
+                </div>
+
+                <div class="flex-1 flex flex-col justify-between">
+                    <p class="text-black-800 mb-4 text-xl">Fast realiable Shipping <br> by Ocean or air</p>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div
+                class="bg-white p-6 rounded-lg shadow-lg text-center hover:scale-105 transform transition duration-300 relative flex flex-col">
+
+
+
+
+                <div class="relative w-full h-40 mb-4">
+                    <img src="https://i.pinimg.com/736x/07/3f/e6/073fe603c183157217fce4b70df7728f.jpg" alt="Service 4"
+                        class="w-full h-full object-cover rounded-md">
+                </div>
+
+
+                <div
+                    class="absolute top-1/2 right-4 transform -translate-y-1/2 w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center">
+                    <i class="fas fa-gem text-purple-600 text-lg"></i>
+                </div>
+                <div class="flex-1 flex flex-col justify-between">
+                    <p class="text-black-800 mb-4 text-xl">Poduct Monitering <br> and Inspection</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mx-auto py-12">
+        <!-- Section Heading with Default Flag -->
+        <div class="flex justify-between items-center">
+            <!-- Section Heading -->
+            <h2 class="text-2xl font-semibold mb-8 ml-6">Suppliers by Region</h2>
+            <!-- Default Flag Section -->
+            <div id="defaultFlag" class="flex flex-col items-center space-x-4 mr-4">
+                <!-- Default Flag -->
+                <img id="defaultFlagImg"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/1280px-Flag_of_the_United_States.svg.png"
+                    alt="Default USA Flag" class="w-20 h-14 object-cover rounded shadow-lg">
+                <!-- Default Text -->
+                <p id="defaultCountryName" class="text-lg font-semibold mt-4">
+                    US - Supplier
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Flags Section -->
+    <div class="grid bg-gray-200 grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 mt-8">
+        <!-- Example Flags -->
+        <div class="text-center"
+            onclick="changeDefaultFlag('US - Supplier', 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/1280px-Flag_of_the_United_States.svg.png')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/1280px-Flag_of_the_United_States.svg.png"
+                alt="USA Flag" class="mx-auto mb-4 w-12 h-8 object-cover">
+            <p class="font-semibold">United States </p>
+            <p class="text-gray-600">shopname.ae</p>
+        </div>
+        <div class="text-center"
+            onclick="changeDefaultFlag('Ger - Supplier', 'https://flagicons.lipis.dev/flags/4x3/de.svg')">
+            <img src="https://flagicons.lipis.dev/flags/4x3/de.svg" alt="Germany Flag"
+                class="mx-auto mb-4 w-12 h-8 object-cover">
+            <p class="font-semibold">Germany </p>
+            <p class="text-gray-600">shopname.ae</p>
+        </div>
+        <div class="text-center"
+            onclick="changeDefaultFlag('Fra - Supplier', 'https://flagicons.lipis.dev/flags/4x3/fr.svg')">
+            <img src="https://flagicons.lipis.dev/flags/4x3/fr.svg" alt="France Flag"
+                class="mx-auto mb-4 w-12 h-8 object-cover">
+            <p class="font-semibold">France</p>
+            <p class="text-gray-600">shopname.ae</p>
+        </div>
+        <div class="text-center"
+            onclick="changeDefaultFlag('UK - Supplier', 'https://flagicons.lipis.dev/flags/4x3/gb.svg')">
+            <img src="https://flagicons.lipis.dev/flags/4x3/gb.svg" alt="United Kingdom Flag"
+                class="mx-auto mb-4 w-12 h-8 object-cover">
+            <p class="font-semibold">United Kingdom </p>
+            <p class="text-gray-600">shopname.ae</p>
+        </div>
+        <div class="text-center"
+            onclick="changeDefaultFlag('Jap- Supplier', 'https://flagicons.lipis.dev/flags/4x3/jp.svg')">
+
+            <img src="https://flagicons.lipis.dev/flags/4x3/jp.svg" alt="Japan Flag"
+                class="mx-auto mb-4 w-12 h-8 object-cover">
+            <p class="font-semibold">Japan </p>
+            <p class="text-gray-600">shopname.ae</p>
+        </div>
+        <div class="text-center"
+            onclick="changeDefaultFlag('Ind - Supplier', 'https://flagicons.lipis.dev/flags/4x3/in.svg')">
+            <img src="https://flagicons.lipis.dev/flags/4x3/in.svg" alt="India Flag"
+                class="mx-auto mb-4 w-12 h-8 object-cover">
+            <p class="font-semibold">India - Supplier</p>
+            <p class="text-gray-600">shopname.ae</p>
+        </div>
+        <div class="text-center"
+            onclick="changeDefaultFlag('Aus - Supplier', 'https://flagicons.lipis.dev/flags/4x3/au.svg')">
+            <img src="https://flagicons.lipis.dev/flags/4x3/au.svg" alt="Australia Flag"
+                class="mx-auto mb-4 w-12 h-8 object-cover">
+            <p class="font-semibold">Australia </p>
+            <p class="text-gray-600">shopname.ae</p>
+        </div>
+        <div class="text-center"
+            onclick="changeDefaultFlag('Can - Supplier', 'https://flagicons.lipis.dev/flags/4x3/ca.svg')">
+            <img src="https://flagicons.lipis.dev/flags/4x3/ca.svg" alt="Canada Flag"
+                class="mx-auto mb-4 w-12 h-8 object-cover">
+            <p class="font-semibold">Canada</p>
+            <p class="text-gray-600">shopname.ae</p>
+        </div>
+        <div class="text-center"
+            onclick="changeDefaultFlag('Braz - Supplier', 'https://flagicons.lipis.dev/flags/4x3/br.svg')">
+            <img src="https://flagicons.lipis.dev/flags/4x3/br.svg" alt="Brazil Flag"
+                class="mx-auto mb-4 w-12 h-8 object-cover">
+            <p class="font-semibold">Brazil</p>
+            <p class="text-gray-600">shopname.ae</p>
+        </div>
+        <div class="text-center"
+            onclick="changeDefaultFlag('SK - Supplier', 'https://flagicons.lipis.dev/flags/4x3/kr.svg')">
+            <img src="https://flagicons.lipis.dev/flags/4x3/kr.svg" alt="South Korea Flag"
+                class="mx-auto mb-4 w-12 h-8 object-cover">
+            <p class="font-semibold">South Korea</p>
+            <p class="text-gray-600">shopname.ae</p>
+        </div>
+
+    </div>
+    </div>
+
+
+    <div class="bg-gray-300 py-16 mt-10">
+        <div class="container mx-auto text-center max-w-lg">
+
+            <!-- Section Heading -->
+
+            <h2 class="text-3xl font-semibold mb-4">Subscribe to Our Newsletter</h2>
+
+            <!-- Small Description -->
+
+            <p class="text-gray-600 mb-8">Stay updated with the latest news and exclusive offers.</p>
+
+            <!-- Input and Button Container -->
+
+            <div class="flex items-center border border-gray-300 rounded-lg overflow-hidden max-w-md mx-auto">
+
+                <!-- Email Icon -->
+
+                <div class="p-3 bg-gray-200 text-gray-500">
+                    <i class="fas fa-envelope"></i>
+                </div>
+
+                <!-- Email Input -->
+
+                <input type="email" placeholder="Enter your email" class="w-full py-2 px-4 outline-none">
+
+                <!-- Subscribe Button -->
+
+                <button class="bg-blue-600 text-white px-4 py-2 hover:bg-blue-700 transition-all">
+                    Subscribe
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Start -->
+
+    <footer class="bg-gray-200 py-12 mt-4 ">
+        <div class="container mx-auto flex flex-wrap lg:flex-nowrap justify-between items-start ml-4">
+
+            <!-- Logo and Description Section -->
+
+            <div class="w-full lg:w-1/4 mb-8 lg:mb-0">
+                <div class="flex items-center mb-4">
+
+                    <!-- Logo -->
+
+                    <img src="assest/images/logoo.png" alt="Logo" class="w-12 h-12 mr-3">
+
+                    <!-- Company Name -->
+
+                    <span class="text-xl font-semibold">ShopSphere</span>
+                </div>
+                <p class="text-gray-600 mb-4">Your go-to platform for reliable suppliers <br> worldwide.</p>
+
+                <!-- Social Media Icons -->
+
+                <div class="flex space-x-4 mt-4">
+                    <a href="#" aria-label="Facebook" class="text-gray-600 hover:text-blue-600">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" aria-label="Twitter" class="text-gray-600 hover:text-blue-400">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" aria-label="LinkedIn" class="text-gray-600 hover:text-blue-700">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="#" aria-label="Instagram" class="text-gray-600 hover:text-pink-500">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" aria-label="YouTube" class="text-gray-600 hover:text-red-600">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Links Section -->
+
+            <div class="w-full lg:w-2/4 grid grid-cols-2 sm:grid-cols-4 gap-8">
+
+                <!-- About Links -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">About</h4>
+                    <ul class="space-y-2 text-gray-600">
+                        <li><a href="#" class="hover:text-gray-800">Our Story</a></li>
+                        <li><a href="#" class="hover:text-gray-800">Mission</a></li>
+                        <li><a href="#" class="hover:text-gray-800">Team</a></li>
+                        <li><a href="#" class="hover:text-gray-800">Careers</a></li>
+                    </ul>
+                </div>
+
+                <!-- Partnership Links -->
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Partnership</h4>
+                    <ul class="space-y-2 text-gray-600">
+                        <li><a href="#" class="hover:text-gray-800">Become a Partner</a></li>
+                        <li><a href="#" class="hover:text-gray-800">Supplier Portal</a></li>
+                        <li><a href="#" class="hover:text-gray-800">Advertise</a></li>
+                        <li><a href="#" class="hover:text-gray-800">Affiliate Program</a></li>
+                    </ul>
+                </div>
+
+                <!-- Information Links -->
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Information</h4>
+                    <ul class="space-y-2 text-gray-600">
+                        <li><a href="#" class="hover:text-gray-800">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-gray-800">Terms & Conditions</a></li>
+                        <li><a href="#" class="hover:text-gray-800">Help Center</a></li>
+                        <li><a href="#" class="hover:text-gray-800">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- For Users Links -->
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">For Users</h4>
+                    <ul class="space-y-2 text-gray-600">
+                        <li><a href="#" class="hover:text-gray-800">User Guide</a></li>
+                        <li><a href="#" class="hover:text-gray-800">FAQs</a></li>
+                        <li><a href="#" class="hover:text-gray-800">Community</a></li>
+                        <li><a href="#" class="hover:text-gray-800">Support</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Get the App Section -->
+
+            <div class="w-full lg:w-1/4 mt-8 lg:mt-0 flex flex-col items-center lg:items-start">
+                <h4 class="text-lg font-semibold mb-4">Get the App</h4>
+                <div class="flex space-x-4 ">
+
+                    <!-- Play Store Icon -->
+
+                    <a href="#" class="bg-black text-white px-4 py-2 rounded-lg flex items-center">
+                        <i class="fab fa-google-play text-lg mr-2"></i>
+                        Play Store
+                    </a>
+
+                    <!-- App Store Icon -->
+
+                    <a href="#" class="bg-black text-white px-4 py-2 rounded-lg flex items-center">
+                        <i class="fab fa-apple text-lg mr-2"></i>
+                        App Store
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Footer end -->
+
+    <!-- Footer Bottom Section -->
+
+    <div class="bg-gray-600 py-4">
+        <div class="container mx-auto flex justify-between items-center text-white text-sm max-w-screen-md">
+
+            <!-- Copyright Text, Slightly Centered -->
+
+            <div class="text-left ml-4">
+                &copy; Muhammad Ahmed
+            </div>
+
+            <!-- Language and Flag Selector, Slightly Centered -->
+
+            <div class="flex items-center space-x-2 mr-4">
+
+
+                <!-- Flag Display (Initially US Flag) -->
+
+                <img id="language-flag" src="https://flagcdn.com/w20/us.png" alt="US Flag"
+                    class="w-6 h-4 object-cover rounded-sm">
+
+                <!-- Language Dropdown -->
+
+                <select id="language-selector" class="bg-gray-700 text-white border-none focus:outline-none p-1 rounded"
+                    onchange="updateFlag()">
+                    <option value="en" selected>English</option>
+                    <option value="fr">French</option>
+                    <option value="es">Spanish</option>
+                    <option value="de">German</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <script src="assest/src/script.js"></script>
+
+</body>
+
+</html>
